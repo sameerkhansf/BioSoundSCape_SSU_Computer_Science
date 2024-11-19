@@ -68,7 +68,7 @@ This project is part of a larger initiative known as **BioSoundSCape**, a collab
 
 Learn more about [BioScape](https://www.bioscape.io/).
 <a href="https://github.com/Hyperspectral-Landcover-Classification">
-  <img src="Assets/Bioscape_logo.png" alt="Logo" width="125" height="75">
+  <img src="Assets/bioscape_logo.png" alt="Logo" width="125" height="75">
 </a>
 
 The **Biodiversity Survey of the Cape** is a NASA-SANSA Biodiversity research project focused on the Greater Cape Floristic Region of South Africa.

@@ -31,7 +31,7 @@
     A Computer Vision Model For Classifying Terrain.  
     <br />
     <br />
-    <a href="https://github.com/Hyperspectral-Landcover-Classification/blob/main/README.md"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification/blob/main/README.md"><strong>Explore the docs »</strong></a>
   </p>
 </div>
 
@@ -65,7 +65,7 @@ This project is part of the larger **BioSCape** initiative, a collaboration aime
 
 Learn more about [BioSCape](https://www.bioscape.io/).
 
-<a href="https://github.com/Hyperspectral-Landcover-Classification">
+<a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
   <img src="Assets/bioscape_logo.png" alt="BioSCape Logo" width="125" height="75">
 </a>
 
@@ -73,7 +73,7 @@ The **Biodiversity Survey of the Cape** is a NASA-SANSA Biodiversity research pr
 
 - This initiative utilizes hyperspectral images captured by the AVIRIS-NG remote sensor to analyze and classify land cover types. These hyperspectral images, containing 432 bands, provide detailed spectral data that enable precise classification across diverse ecological categories.
 
-  <a href="https://github.com/Hyperspectral-Landcover-Classification">
+  <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
     <img src="Assets/Hyperspectral_image_cube.png" alt="Logo" width="150" height="150">
   </a>
 
@@ -117,7 +117,7 @@ git clone https://github.com/Hyperspectral/Hyperspectral-Landcover-Classificatio
 
 ## Roadmap
 
-See the [open issues](https://github.com/Hyperspectral-Landcover-Classification/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/harrisb002/Hyperspectral-Landcover-Classification/issues) for a full list of proposed features (and known issues).
 
 <!-- CONTRIBUTORS -->
 ## Contributors

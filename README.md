@@ -59,16 +59,14 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+### A Larger Initiative: BioSCape
 
-This program was completed as a capstone project among eight students at Sonoma State University in fall 2024.
+This project is part of the larger **BioSCape** initiative, a collaboration aimed at understanding biodiversity in the Greater Cape Floristic Region. 
 
-### A Larger Initiative: BioSoundSCape
+Learn more about [BioSCape](https://www.bioscape.io/).
 
-This project is part of a larger initiative known as **BioSoundSCape**, a collaboration aimed at connecting acoustics and remote sensing to study habitat and animal diversity across environmental gradients. 
-
-Learn more about [BioScape](https://www.bioscape.io/).
 <a href="https://github.com/Hyperspectral-Landcover-Classification">
-  <img src="Assets/bioscape_logo.png" alt="Logo" width="125" height="75">
+  <img src="Assets/bioscape_logo.png" alt="BioSCape Logo" width="125" height="75">
 </a>
 
 The **Biodiversity Survey of the Cape** is a NASA-SANSA Biodiversity research project focused on the Greater Cape Floristic Region of South Africa.

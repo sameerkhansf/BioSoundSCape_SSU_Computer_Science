@@ -21,8 +21,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Hyperspectral/Landcover-Classification">
-    <img src="Misc/CapeRegion.png" alt="Logo" width="600" height="300">
+  <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
+    <img src="Assets/CapeRegion.png" alt="Logo" width="600" height="300">
   </a>
 
 <h3 align="center">HyperSpectral Landcover Classifiation</h3>
@@ -31,7 +31,7 @@
     A Computer Vision Model For Classifying Terrain.  
     <br />
     <br />
-    <a href="https://github.com/Hyperspectral/Landcover-Classification/blob/main/README.md"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Hyperspectral-Landcover-Classification/blob/main/README.md"><strong>Explore the docs »</strong></a>
   </p>
 </div>
 
@@ -67,16 +67,16 @@ This program was completed as a capstone project among eight students at Sonoma 
 This project is part of a larger initiative known as **BioSoundSCape**, a collaboration aimed at connecting acoustics and remote sensing to study habitat and animal diversity across environmental gradients. 
 
 Learn more about [BioScape](https://www.bioscape.io/).
-<a href="https://github.com/Hyperspectral/Landcover-Classification">
-  <img src="Misc/Bioscape_logo.png" alt="Logo" width="125" height="75">
+<a href="https://github.com/Hyperspectral-Landcover-Classification">
+  <img src="Assets/Bioscape_logo.png" alt="Logo" width="125" height="75">
 </a>
 
 The **Biodiversity Survey of the Cape** is a NASA-SANSA Biodiversity research project focused on the Greater Cape Floristic Region of South Africa.
 
 - This initiative utilizes hyperspectral images captured by the AVIRIS-NG remote sensor to analyze and classify land cover types. These hyperspectral images, containing 432 bands, provide detailed spectral data that enable precise classification across diverse ecological categories.
 
-  <a href="https://github.com/Hyperspectral/Landcover-Classification">
-    <img src="Misc/Hyperspectral_image_cube.png" alt="Logo" width="150" height="150">
+  <a href="https://github.com/Hyperspectral-Landcover-Classification">
+    <img src="Assets/Hyperspectral_image_cube.png" alt="Logo" width="150" height="150">
   </a>
 
 ### Land Cover Classification Categories
@@ -114,12 +114,12 @@ Through this project, we contributed to the broader goal of understanding biodiv
 1. Clone the repo
 
 ```sh
-git clone https://github.com/Hyperspectral/Hyperspectral/Landcover-Classification.git
+git clone https://github.com/Hyperspectral/Hyperspectral-Landcover-Classification.git
 ```
 
 ## Roadmap
 
-See the [open issues](https://github.com/Hyperspectral/Landcover-Classification/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/Hyperspectral-Landcover-Classification/issues) for a full list of proposed features (and known issues).
 
 <!-- CONTRIBUTORS -->
 ## Contributors
@@ -167,16 +167,21 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/Hyperspectral/Landcover-Classification.svg?style=for-the-badge
-[contributors-url]: https://github.com/Hyperspectral/Landcover-Classification/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Hyperspectral/Landcover-Classification.svg?style=for-the-badge
-[forks-url]: https://github.com/Hyperspectral/Landcover-Classification/network/members
-[stars-shield]: https://img.shields.io/github/stars/Hyperspectral/Landcover-Classification.svg?style=for-the-badge
-[stars-url]: https://github.com/Hyperspectral/Landcover-Classification/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Hyperspectral/Landcover-Classification.svg?style=for-the-badge
-[issues-url]: https://github.com/Hyperspectral/Landcover-Classification/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/Hyperspectral/Landcover-Classification/blob/main/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
+[contributors-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/graphs/contributors
+
+[forks-shield]: https://img.shields.io/github/forks/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
+[forks-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/network/members
+
+[stars-shield]: https://img.shields.io/github/stars/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
+[stars-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/stargazers
+
+[issues-shield]: https://img.shields.io/github/issues/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
+[issues-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/issues
+
+[license-shield]: https://img.shields.io/github/license/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
+[license-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/blob/main/LICENSE.txt
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white

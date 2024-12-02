@@ -32,8 +32,15 @@
     <br />
     <br />
     <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification/blob/main/README.md"><strong>Explore the docs »</strong></a>
+    
+  
   </p>
 </div>
+
+#### 🎥 Project Overview Video [Project Video](https://www.youtube.com/watch?v=KFSoe3jba1s)
+
+#### 📓 Project Presentation [Presentation](Assets/CS470_1D_LandcoverClassification.pdf)
+---
 
 <!-- TABLE OF CONTENTS -->
 <details>

@@ -1,0 +1,27 @@
+.App {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.layout {
+    display: flex;
+    height: calc(100vh - 60px);
+    /* Subtract TopBar height */
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    flex-shrink: 0;
+}
+
+.map-container {
+    flex-grow: 1;
+    /* Allow map to fill remaining space */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}

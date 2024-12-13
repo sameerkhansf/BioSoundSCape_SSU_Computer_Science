@@ -48,7 +48,7 @@
 
 #### 🎥 Project Overview Video [Project Video](https://www.youtube.com/watch?v=KFSoe3jba1s)
 
-#### 📓 Project Presentation [Presentation](Assets/CS470_1D_LandcoverClassification.pdf)
+#### 📓 Project Presentation [Presentation](Assets/FinalDeliverablePresentation.pdf)
 
 ---
 

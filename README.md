@@ -22,9 +22,17 @@
 <br />
 <div align="center">
   <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
-    <img src="Assets/CapeRegion.png" alt="Logo" width="600" height="300">
+    <img src="Assets/CapeRegion.png" alt="Logo" width="1000" height="400">
+  </a>
+  <br/>
+  <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
+    <img src="Assets/google_maps.png" alt="Logo" width="500" height="400">
+  </a>
+  <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
+    <img src="Assets/hexagon_layer.png" alt="Logo" width="500" height="400" >
   </a>
 
+</div>
 <h3 align="center">HyperSpectral Landcover Classifiation</h3>
 
   <p align="center">
@@ -32,14 +40,16 @@
     <br />
     <br />
     <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification/blob/main/README.md"><strong>Explore the docs »</strong></a>
-    
-  
+    <br />
+    <br />
+    <a href="https://github.com/harrisb002/cs375/blob/main/Final-Project/hsi-visualization/README.md"><strong>Explore the web based app »</strong></a>
   </p>
 </div>
 
 #### 🎥 Project Overview Video [Project Video](https://www.youtube.com/watch?v=KFSoe3jba1s)
 
 #### 📓 Project Presentation [Presentation](Assets/CS470_1D_LandcoverClassification.pdf)
+
 ---
 
 <!-- TABLE OF CONTENTS -->
@@ -65,10 +75,12 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
+
 ### A Larger Initiative: BioSCape
 
-This project is part of the larger **BioSCape** initiative, a collaboration aimed at understanding biodiversity in the Greater Cape Floristic Region. 
+This project is part of the larger **BioSCape** initiative, a collaboration aimed at understanding biodiversity in the Greater Cape Floristic Region.
 
 Learn more about [BioSCape](https://www.bioscape.io/).
 
@@ -110,6 +122,7 @@ The **Biodiversity Survey of the Cape** is a NASA-SANSA Biodiversity research pr
 Through this project, we contributed to the broader goal of understanding biodiversity in the Cape Floristic Region by providing detailed land cover maps, which are essential for ecological and conservation research.
 
 <!-- GETTING STARTED -->
+
 <a id="readme-getting-started"></a>
 
 ## Getting Started
@@ -127,6 +140,7 @@ git clone https://github.com/Hyperspectral/Hyperspectral-Landcover-Classificatio
 See the [open issues](https://github.com/harrisb002/Hyperspectral-Landcover-Classification/issues) for a full list of proposed features (and known issues).
 
 <!-- CONTRIBUTORS -->
+
 ## Contributors
 
 8 students worked together to implement this project.
@@ -150,16 +164,17 @@ See the [open issues](https://github.com/harrisb002/Hyperspectral-Landcover-Clas
 </p>
 
 <!-- CONNECT -->
+
 ### Connect With Us
 
+Ben Harris - [LinkedIn](https://www.linkedin.com/in/benjamin-harris-388151274/)
+Sam Hobbs - [LinkedIn](https://www.linkedin.com/in/samuel-hobbs-234204183/)
 Blake Marshall - [LinkedIn](https://www.linkedin.com/in/blakemarshalll)  
-Sean Farmer - [LinkedIn](https://www.linkedin.com/in/sean-farmer-517ab8276/)  
 Jacob Sellers - [LinkedIn](https://www.linkedin.com/in/jacob-sellers-83840826a)  
-Isauro Ramos - [LinkedIn](https://www.linkedin.com/in/ramosisauro/)  
-Ben Harris - [LinkedIn](https://www.linkedin.com/in/benjamin-harris-388151274/)  
-Sam Hobbs - [LinkedIn](https://www.linkedin.com/in/samuel-hobbs-234204183/)  
+Sean Farmer - [LinkedIn](https://www.linkedin.com/in/sean-farmer-517ab8276/)  
 Ian Swallow - [LinkedIn](https://www.linkedin.com/in/ian-swallow-b37266311/)  
 Collins Senaya - [LinkedIn](https://www.linkedin.com/in/collins-senaya-044ba51bb/)
+Isauro Ramos - [LinkedIn](https://www.linkedin.com/in/ramosisauro/)
 
 <!-- LICENSE -->
 
@@ -174,19 +189,14 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 [contributors-shield]: https://img.shields.io/github/contributors/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
 [contributors-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/graphs/contributors
-
 [forks-shield]: https://img.shields.io/github/forks/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
 [forks-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/network/members
-
 [stars-shield]: https://img.shields.io/github/stars/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
 [stars-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/stargazers
-
 [issues-shield]: https://img.shields.io/github/issues/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
 [issues-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/issues
-
 [license-shield]: https://img.shields.io/github/license/harrisb002/Hyperspectral-Landcover-Classification.svg?style=for-the-badge
 [license-url]: https://github.com/harrisb002/Hyperspectral-Landcover-Classification/blob/main/LICENSE.txt
-
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white

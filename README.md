@@ -26,10 +26,10 @@
   </a>
   <br/>
   <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
-    <img src="Assets/google_maps.png" alt="Logo" width="500" height="400">
+    <img src="Assets/google_maps.png" alt="Logo" width="400" height="400">
   </a>
   <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
-    <img src="Assets/hexagon_layer.png" alt="Logo" width="500" height="400" >
+    <img src="Assets/hexagon_layer.png" alt="Logo" width="400" height="400" >
   </a>
 
 </div>
@@ -146,14 +146,14 @@ See the [open issues](https://github.com/harrisb002/Hyperspectral-Landcover-Clas
 8 students worked together to implement this project.
 
 <p align="center">
-  <a href="https://github.com/officialblake">
-    <img src="https://github.com/officialblake.png" width="80" height="80" style="border-radius: 50%;" alt="Blake Marshall" />
-  </a>
   <a href="https://github.com/harrisb002">
     <img src="https://github.com/harrisb002.png" width="80" height="80" style="border-radius: 50%;" alt="Collins Senaya" />
   </a>
   <a href="https://github.com/samuelhobbs">
     <img src="https://github.com/samuelhobbs.png" width="80" height="80" style="border-radius: 50%;" alt="Ian Swallow" />
+  </a>
+  <a href="https://github.com/officialblake">
+    <img src="https://github.com/officialblake.png" width="80" height="80" style="border-radius: 50%;" alt="Blake Marshall" />
   </a>
   <a href="https://github.com/sean10203040">
     <img src="https://github.com/sean10203040.png" width="80" height="80" style="border-radius: 50%;" alt="Sean Farmer" />
@@ -167,13 +167,13 @@ See the [open issues](https://github.com/harrisb002/Hyperspectral-Landcover-Clas
 
 ### Connect With Us
 
-Ben Harris - [LinkedIn](https://www.linkedin.com/in/benjamin-harris-388151274/)
-Sam Hobbs - [LinkedIn](https://www.linkedin.com/in/samuel-hobbs-234204183/)
+Ben Harris - [LinkedIn](https://www.linkedin.com/in/benjamin-harris-388151274/)  
+Sam Hobbs - [LinkedIn](https://www.linkedin.com/in/samuel-hobbs-234204183/)  
 Blake Marshall - [LinkedIn](https://www.linkedin.com/in/blakemarshalll)  
 Jacob Sellers - [LinkedIn](https://www.linkedin.com/in/jacob-sellers-83840826a)  
 Sean Farmer - [LinkedIn](https://www.linkedin.com/in/sean-farmer-517ab8276/)  
 Ian Swallow - [LinkedIn](https://www.linkedin.com/in/ian-swallow-b37266311/)  
-Collins Senaya - [LinkedIn](https://www.linkedin.com/in/collins-senaya-044ba51bb/)
+Collins Senaya - [LinkedIn](https://www.linkedin.com/in/collins-senaya-044ba51bb/)  
 Isauro Ramos - [LinkedIn](https://www.linkedin.com/in/ramosisauro/)
 
 <!-- LICENSE -->

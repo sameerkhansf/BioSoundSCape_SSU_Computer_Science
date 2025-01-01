@@ -18,7 +18,7 @@ def clean_data(
     Args:
         data: pd.DataFrame
     """
-  try:
+    try:
         preprocess_strategy = DataPreprocessStrategy()
         data_cleaning = DataCleaning(data, preprocess_strategy)
         preprocessed_data, _ = data_cleaning.handle_data()

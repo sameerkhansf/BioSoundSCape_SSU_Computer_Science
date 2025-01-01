@@ -3,7 +3,6 @@ import pandas as pd
 from zenml import step
 from zenml.client import Client
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
-
 from model.model_dev import CNNModel, PCATransformer
 from .config import ModelNameConfig
 

@@ -2,7 +2,7 @@ import logging
 from typing import Tuple
 import pandas as pd
 from zenml import step
-from data_cleaning import DataCleaning, DataPreprocessStrategy, DataDivideStrategy
+from model.data_cleaning import DataCleaning, DataPreprocessStrategy, DataDivideStrategy
 
 @step
 def clean_data(

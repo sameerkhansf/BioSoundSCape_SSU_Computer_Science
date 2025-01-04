@@ -105,7 +105,6 @@ The **Biodiversity Survey of the Cape** is a NASA-SANSA Biodiversity research pr
 - **Natural Grassland**
 - **Consolidated Barren** (e.g., rocks, salt pans)
 - **Built-up Areas**
-- **Mixed or Not Classified**
 - **Natural Wooded Land**
 - **Waterbodies**
 - **Annual Crops** (e.g., wheat)

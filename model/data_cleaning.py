@@ -39,7 +39,7 @@ class DataPreprocessStrategy(DataStrategy):
             # Handle frequency columns
             frequency_columns = [col for col in data.columns if col.startswith('frq')]
             data.loc[:, frequency_columns] = data[frequency_columns].fillna(-9999)
-            data = data[~data[frequency_columns].eq(-9999).any(axis=1)]
+            data = data[np.logical_not(data[frequency_columns].eq(-9999).any(axis=1))]
 
             # Verify no invalid values remain
             assert data[frequency_columns].isna().sum().sum() == 0, "NaN values still exist in frequency columns"
@@ -65,20 +65,26 @@ class DataDivideStrategy(DataStrategy):
         Stratified splitting of the data into train and test datasets.
         """
         try:
+            # Create a DataFrame with unique images and their labels
             image_samples_df = data[['Sample_num', 'Label_Encoded']].drop_duplicates()
+            
+            # Stratified splitting at the image level
             sss = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
             train_indices, test_indices = next(
                 sss.split(image_samples_df['Sample_num'], image_samples_df['Label_Encoded'])
             )
-
+            
+            # Get the Sample_num for training and testing
             train_sample_nums = image_samples_df['Sample_num'].iloc[train_indices]
             test_sample_nums = image_samples_df['Sample_num'].iloc[test_indices]
-
+            
+            # Create training and testing DataFrames
             train_df = data[data['Sample_num'].isin(train_sample_nums)]
             test_df = data[data['Sample_num'].isin(test_sample_nums)]
 
             frequency_cols = [col for col in data.columns if 'frq' in col]
 
+            # Extract features and samples for training and testing sets
             X_train = train_df[frequency_cols].values
             y_train = train_df['Label_Encoded'].values
             X_test = test_df[frequency_cols].values

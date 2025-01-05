@@ -1,6 +1,6 @@
-from zenml.steps import BaseParameters
+from zenml.config.strict_base_model import StrictBaseModel
 
-class ModelNameConfig(BaseParameters):
+class ModelNameConfig(StrictBaseModel):
     """Model Configurations"""
     model_name: str = "cnn"
     fine_tuning: bool = False

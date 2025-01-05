@@ -40,15 +40,12 @@ def clean_data(
     """
     try:
         logging.info("Initializing data preprocessing strategy...")
-        # Apply preprocessing strategy
         preprocess_strategy = DataPreprocessStrategy()
         data_cleaning_preprocess = DataCleaning(data, preprocess_strategy)
         preprocessed_data, label_encoder = data_cleaning_preprocess.handle_data()
 
         logging.info("Preprocessing completed successfully.")
         logging.info("Initializing data division strategy...")
-
-        # Apply division strategy
         divide_strategy = DataDivideStrategy()
         data_cleaning_divide = DataCleaning(preprocessed_data, divide_strategy)
         X_train, X_test, y_train, y_test = data_cleaning_divide.handle_data()

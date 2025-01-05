@@ -1,17 +1,19 @@
 import logging
 import mlflow
-import numpy as np
-import pandas as pd
-from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
-from model.evaluation import MSE, RMSE, R2Score
-from typing_extensions import Annotated
 from zenml import step
 from zenml.client import Client
 from typing import Tuple, Dict
-from tensorflow.keras.models import Model
-from sklearn.preprocessing import LabelEncoder
-import matplotlib.pyplot as plt
+
+import numpy as np
+import pandas as pd
 import seaborn as sns
+
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
+from model.evaluation import MSE, RMSE, R2Score
+from typing_extensions import Annotated
+from tensorflow.keras.models import Model
+import matplotlib.pyplot as plt
 
 experiment_tracker = Client().active_stack.experiment_tracker
 
@@ -78,7 +80,7 @@ def evaluation(
 
         # Image-level Metrics
         test_df = pd.DataFrame({
-            "Sample_num": np.arange(len(y_true_labels)),  # Placeholder for sample numbers
+            "Sample_num": np.arange(len(y_true_labels)),  
             "Label": y_true_labels,
             "Predicted_Pixel_Label": y_pred_int
         })
@@ -92,7 +94,7 @@ def evaluation(
         )
 
         # Merge ground truth
-        image_predictions["Label"] = y_true_labels[:len(image_predictions)]  # Placeholder logic
+        image_predictions["Label"] = y_true_labels[:len(image_predictions)] 
         image_predictions["Encoded_Label"] = label_encoder.transform(image_predictions["Label"])
         image_predictions["Encoded_Predicted_Label"] = image_predictions["Predicted_Image_Label"]
 

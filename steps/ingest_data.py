@@ -4,7 +4,7 @@ from zenml import step
 
 class IngestData:
     """
-    Data ingestion class which ingests data from the source and returns a DataFrame.
+    Data ingestion class which loads data from the specified CSV file.
     """
 
     def __init__(self, data_path: str) -> None:
@@ -36,7 +36,7 @@ class IngestData:
 @step
 def ingest_data(data_path: str) -> pd.DataFrame:
     """
-    ZenML step to ingest data.
+    ZenML step to ingest data from a CSV file.
 
     Args:
         data_path (str): Path to the CSV file.

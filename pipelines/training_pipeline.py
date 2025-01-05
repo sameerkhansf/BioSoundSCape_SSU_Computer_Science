@@ -2,29 +2,36 @@ from zenml.config import DockerSettings
 from zenml.integrations.constants import MLFLOW
 from zenml.pipelines import pipeline
 
+from steps.ingest_data import ingest_data
+from steps.clean_data import clean_data
+from steps.model_train import model_train
+from steps.evaluation import evaluation
+
+# Configure Docker settings to include MLflow integration
 docker_settings = DockerSettings(required_integrations=[MLFLOW])
 
+# The path to our CSV data file
+DATA_PATH = "data/samples.csv"
 
 @pipeline(enable_cache=False, settings={"docker": docker_settings})
-def train_pipeline(ingest_data, clean_data, model_train, evaluation):
+def train_pipeline():
     """
     A ZenML pipeline for data ingestion, preprocessing, model training, and evaluation.
 
-    Args:
-        ingest_data: Step for data ingestion.
-        clean_data: Step for cleaning and splitting data.
-        model_train: Step for training the model.
-        evaluation: Step for evaluating the model.
+    The pipeline steps are:
+      1. ingest_data: Read data from a CSV file.
+      2. clean_data: Preprocess and split the data into training and testing sets.
+      3. model_train: Train a CNN model on the clean data.
+      4. evaluation: Evaluate the model at pixel-level and image-level.
 
     Returns:
-        A dictionary of evaluation metrics.
+        dict: A dictionary containing 'pixel_metrics' and 'image_metrics'.
     """
     # Data ingestion
-    df = ingest_data()
+    df = ingest_data(data_path=DATA_PATH)
 
     # Data cleaning and splitting
-    clean_data_outputs = clean_data(data=df)
-    X_train, X_test, y_train, y_test, label_encoder = clean_data_outputs
+    X_train, X_test, y_train, y_test, label_encoder = clean_data(data=df)
 
     # Model training
     model = model_train(

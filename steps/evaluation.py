@@ -7,16 +7,14 @@ from typing import Tuple, Dict
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
-from model.evaluation import MSE, RMSE, R2Score
 from typing_extensions import Annotated
 from tensorflow.keras.models import Model
-import matplotlib.pyplot as plt
 
 experiment_tracker = Client().active_stack.experiment_tracker
-
 
 @step(experiment_tracker=experiment_tracker.name)
 def evaluation(
@@ -29,16 +27,20 @@ def evaluation(
     Annotated[Dict[str, float], "Image-level metrics"]
 ]:
     """
-    Evaluate the model's performance on test data at both pixel-level and image-level.
+    Evaluate the model's performance at both pixel-level and image-level.
+
+    Logs confusion matrices and accuracy/F1 metrics to MLflow.
 
     Args:
-        model (Model): Trained model for evaluation.
+        model (Model): Trained Keras model for evaluation.
         x_test (np.ndarray): Test features.
-        y_test (np.ndarray): Test labels (one-hot encoded).
-        label_encoder (LabelEncoder): LabelEncoder instance for decoding labels.
+        y_test (np.ndarray): One-hot encoded test labels.
+        label_encoder (LabelEncoder): For inverse-transforming label indices.
 
     Returns:
-        Tuple: Pixel-level and image-level evaluation metrics.
+        (dict, dict): A tuple of two dictionaries:
+          - Pixel-level metrics (accuracy, f1, etc.)
+          - Image-level metrics (accuracy, etc.)
     """
     try:
         logging.info("Starting model evaluation...")
@@ -50,21 +52,25 @@ def evaluation(
         y_pred_probs = model.predict(x_test, verbose=0)
         y_pred_int = np.argmax(y_pred_probs, axis=1)
 
-        # Decode labels
+        # Convert integer labels back to class names
         y_true_labels = label_encoder.inverse_transform(y_true_int)
         y_pred_labels = label_encoder.inverse_transform(y_pred_int)
 
+        # -----------------------
         # Pixel-level Metrics
+        # -----------------------
         pixel_accuracy = accuracy_score(y_true_labels, y_pred_labels)
         pixel_f1 = f1_score(y_true_labels, y_pred_labels, average="weighted")
+
         mlflow.log_metric("pixel_accuracy", pixel_accuracy)
         mlflow.log_metric("pixel_f1", pixel_f1)
 
-        # Confusion Matrix for Pixel-level
+        # Pixel-level Confusion Matrix
         pixel_cm = confusion_matrix(y_true_labels, y_pred_labels)
         plt.figure(figsize=(10, 8))
         sns.heatmap(pixel_cm, annot=True, fmt="d", cmap="Blues",
-                    xticklabels=label_encoder.classes_, yticklabels=label_encoder.classes_)
+                    xticklabels=label_encoder.classes_,
+                    yticklabels=label_encoder.classes_)
         plt.title("Pixel-Level Confusion Matrix")
         plt.xlabel("Predicted")
         plt.ylabel("True")
@@ -72,20 +78,21 @@ def evaluation(
         mlflow.log_figure(plt.gcf(), "pixel_confusion_matrix.png")
         plt.close()
 
-        # Pixel-level metrics dictionary
         pixel_metrics = {
             "pixel_accuracy": pixel_accuracy,
             "pixel_f1": pixel_f1
         }
 
+        # -----------------------
         # Image-level Metrics
+        # -----------------------
         test_df = pd.DataFrame({
             "Sample_num": np.arange(len(y_true_labels)),  
             "Label": y_true_labels,
             "Predicted_Pixel_Label": y_pred_int
         })
 
-        # Group predictions by majority vote
+        # Aggregate predictions by majority vote across "Sample_num"
         image_predictions = (
             test_df.groupby("Sample_num")["Predicted_Pixel_Label"]
             .apply(lambda x: np.bincount(x).argmax())
@@ -93,8 +100,8 @@ def evaluation(
             .rename(columns={"Predicted_Pixel_Label": "Predicted_Image_Label"})
         )
 
-        # Merge ground truth
-        image_predictions["Label"] = y_true_labels[:len(image_predictions)] 
+        # Merge ground truth labels
+        image_predictions["Label"] = y_true_labels[:len(image_predictions)]
         image_predictions["Encoded_Label"] = label_encoder.transform(image_predictions["Label"])
         image_predictions["Encoded_Predicted_Label"] = image_predictions["Predicted_Image_Label"]
 
@@ -112,7 +119,8 @@ def evaluation(
         )
         plt.figure(figsize=(10, 8))
         sns.heatmap(image_cm, annot=True, fmt="d", cmap="Blues",
-                    xticklabels=label_encoder.classes_, yticklabels=label_encoder.classes_)
+                    xticklabels=label_encoder.classes_,
+                    yticklabels=label_encoder.classes_)
         plt.title("Image-Level Confusion Matrix")
         plt.xlabel("Predicted")
         plt.ylabel("True")
@@ -120,7 +128,6 @@ def evaluation(
         mlflow.log_figure(plt.gcf(), "image_confusion_matrix.png")
         plt.close()
 
-        # Image-level metrics dictionary
         image_metrics = {
             "image_accuracy": image_accuracy
         }

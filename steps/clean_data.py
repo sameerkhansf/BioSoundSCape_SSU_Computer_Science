@@ -4,9 +4,13 @@ import pandas as pd
 import numpy as np
 from zenml import step
 from typing_extensions import Annotated
-from model.data_cleaning import DataCleaning, DataPreprocessStrategy, DataDivideStrategy
 from sklearn.preprocessing import LabelEncoder
 
+from model.data_cleaning import (
+    DataCleaning,
+    DataPreprocessStrategy,
+    DataDivideStrategy
+)
 
 @step
 def clean_data(
@@ -19,24 +23,23 @@ def clean_data(
     Annotated[LabelEncoder, "LabelEncoder"]
 ]:
     """
-    Preprocess and clean the input data, then divide it into training and testing datasets.
+    Preprocesses and cleans the input data, then divides it into training and testing datasets.
 
     This step handles:
-    1. Cleaning and preprocessing the input data, including label encoding.
-    2. Splitting the data into stratified train and test sets.
-    3. Converting the data into formats suitable for model training, including
-       reshaping for Conv1D and applying one-hot encoding to the labels.
+      1. Cleaning and preprocessing (e.g., label encoding).
+      2. Splitting the data into stratified train and test sets.
+      3. Reshaping features for Conv1D and applying one-hot encoding to labels.
 
     Args:
         data (pd.DataFrame): The input raw data to be cleaned and split.
 
     Returns:
         Tuple:
-            - X_train (np.ndarray): Training features with Conv1D-ready shape.
-            - X_test (np.ndarray): Testing features with Conv1D-ready shape.
+            - X_train (np.ndarray): Training features (Conv1D-ready shape).
+            - X_test (np.ndarray): Testing features (Conv1D-ready shape).
             - y_train (np.ndarray): One-hot encoded training labels.
             - y_test (np.ndarray): One-hot encoded testing labels.
-            - LabelEncoder: The fitted LabelEncoder for decoding labels.
+            - label_encoder (LabelEncoder): For decoding predicted labels.
     """
     try:
         logging.info("Initializing data preprocessing strategy...")
@@ -52,6 +55,7 @@ def clean_data(
 
         logging.info("Data division into train and test sets completed successfully.")
         return X_train, X_test, y_train, y_test, label_encoder
+
     except Exception as e:
         logging.error(f"Error during data cleaning and division: {str(e)}")
         raise e

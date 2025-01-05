@@ -1,27 +1,27 @@
 from pipelines.training_pipeline import train_pipeline
-from steps.ingest_data import ingest_data
-from steps.clean_data import clean_data
-from steps.model_train import model_train
-from steps.evaluation import evaluation
 from zenml.integrations.mlflow.mlflow_utils import get_tracking_uri
 
-if __name__ == "__main__":
-    DATA_PATH = "data/samples.csv"
+def main():
+    """
+    Main entry point to run the training pipeline. This pipeline will:
+      1. Ingest data from the specified CSV.
+      2. Clean and preprocess the data.
+      3. Train a CNN model.
+      4. Evaluate the model with both pixel-level and image-level metrics.
+    """
+    # Instantiate the pipeline
+    training_pipeline_instance = train_pipeline()
 
-    training = train_pipeline(
-        ingest_data=lambda: ingest_data(data_path=DATA_PATH),
-        clean_data=clean_data,  
-        model_train=model_train,
-        evaluation=evaluation,
-    )
-
-    # Run the pipeline
-    training.run()
+    # Execute the pipeline
+    training_pipeline_instance.run()
 
     print(
         "Now run \n "
         f"    mlflow ui --backend-store-uri '{get_tracking_uri()}'\n"
-        "To inspect your experiment runs within the mlflow UI.\n"
-        "You can find your runs tracked within the `mlflow_example_pipeline`"
-        "experiment. Here you'll also be able to compare the two runs."
+        "to inspect your experiment runs within the MLflow UI.\n"
+        "You can find your runs tracked within the `mlflow_example_pipeline` "
+        "experiment. Here you'll also be able to compare multiple runs."
     )
+
+if __name__ == "__main__":
+    main()

@@ -16,7 +16,7 @@ from tensorflow.keras.models import Model
 
 experiment_tracker = Client().active_stack.experiment_tracker
 
-@step(experiment_tracker=experiment_tracker.name)
+@step(enable_cache=True, experiment_tracker=experiment_tracker.name)
 def evaluation(
     model: Model,
     x_test: np.ndarray,
@@ -28,6 +28,10 @@ def evaluation(
 ]:
     """
     Evaluate the model's performance at both pixel-level and image-level.
+
+    With caching enabled, if model, x_test, y_test remain unchanged,
+    ZenML will skip re-running. However, typically the model artifact
+    changes if training changes.
 
     Logs confusion matrices and accuracy/F1 metrics to MLflow.
 
@@ -68,9 +72,11 @@ def evaluation(
         # Pixel-level Confusion Matrix
         pixel_cm = confusion_matrix(y_true_labels, y_pred_labels)
         plt.figure(figsize=(10, 8))
-        sns.heatmap(pixel_cm, annot=True, fmt="d", cmap="Blues",
-                    xticklabels=label_encoder.classes_,
-                    yticklabels=label_encoder.classes_)
+        sns.heatmap(
+            pixel_cm, annot=True, fmt="d", cmap="Blues",
+            xticklabels=label_encoder.classes_,
+            yticklabels=label_encoder.classes_
+        )
         plt.title("Pixel-Level Confusion Matrix")
         plt.xlabel("Predicted")
         plt.ylabel("True")
@@ -92,7 +98,7 @@ def evaluation(
             "Predicted_Pixel_Label": y_pred_int
         })
 
-        # Aggregate predictions by majority vote across "Sample_num"
+        # Majority vote across each Sample_num
         image_predictions = (
             test_df.groupby("Sample_num")["Predicted_Pixel_Label"]
             .apply(lambda x: np.bincount(x).argmax())
@@ -118,9 +124,11 @@ def evaluation(
             image_predictions["Encoded_Predicted_Label"]
         )
         plt.figure(figsize=(10, 8))
-        sns.heatmap(image_cm, annot=True, fmt="d", cmap="Blues",
-                    xticklabels=label_encoder.classes_,
-                    yticklabels=label_encoder.classes_)
+        sns.heatmap(
+            image_cm, annot=True, fmt="d", cmap="Blues",
+            xticklabels=label_encoder.classes_,
+            yticklabels=label_encoder.classes_
+        )
         plt.title("Image-Level Confusion Matrix")
         plt.xlabel("Predicted")
         plt.ylabel("True")

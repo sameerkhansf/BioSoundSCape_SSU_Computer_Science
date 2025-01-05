@@ -37,7 +37,8 @@ def define_callbacks(checkpoint_path: str):
     )
     return [checkpoint, early_stopping, lr_scheduler]
 
-@step(experiment_tracker=experiment_tracker.name)
+
+@step(enable_cache=True, experiment_tracker=experiment_tracker.name)
 def model_train(
     x_train: np.ndarray,    
     x_test: np.ndarray,
@@ -47,6 +48,8 @@ def model_train(
 ) -> Model:
     """
     Trains a CNN model on the provided data (NumPy arrays).
+    With caching enabled, if x_train/x_test/y_train/y_test remain unchanged 
+    and the code is identical, ZenML will skip re-running this step.
 
     Args:
         x_train (np.ndarray): Training features (Conv1D-ready shape).
@@ -60,7 +63,7 @@ def model_train(
     """
     try:
         # Check model name from config
-        if config.model_name == "cnn":
+        if config.model_name.lower() == "cnn":
             # Build the CNN model
             num_classes = (
                 y_train.shape[1] if y_train.ndim > 1 
@@ -89,7 +92,7 @@ def model_train(
             )
 
             logging.info("Model training completed successfully.")
-            # Return the underlying Keras model
+
             return cnn_model.model
         
         else:

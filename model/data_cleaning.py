@@ -139,9 +139,9 @@ class DataDivideStrategy(DataStrategy):
 
             logging.info("Applying RobustScaler to frequency columns...")
 
-            scaler = RobustScaler()
-            X_train = scaler.fit_transform(X_train)   # Fit on train, transform train
-            X_test = scaler.transform(X_test)         # Transform test
+            # scaler = RobustScaler()
+            # X_train = scaler.fit_transform(X_train)   # Fit on train, transform train
+            # X_test = scaler.transform(X_test)         # Transform test
 
             # Add a channel dimension for Conv1D (now that we have scaled data)
             X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))

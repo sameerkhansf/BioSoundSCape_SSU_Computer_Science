@@ -13,19 +13,21 @@ docker_settings = DockerSettings(required_integrations=[MLFLOW])
 # The path to our CSV data file
 DATA_PATH = "data/samples.csv"
 
-@pipeline(enable_cache=False, settings={"docker": docker_settings})
+
+@pipeline(enable_cache=True, settings={"docker": docker_settings})
 def train_pipeline():
     """
     A ZenML pipeline for data ingestion, preprocessing, model training, and evaluation.
+    
+    Caching is enabled, so if the input data or step outputs do not change
+    between runs, ZenML will skip re-running those steps.
 
-    The pipeline steps are:
+    Steps:
       1. ingest_data: Read data from a CSV file.
       2. clean_data: Preprocess and split the data into training and testing sets.
       3. model_train: Train a CNN model on the clean data.
-      4. evaluation: Evaluate the model at pixel-level and image-level.
-
-    Returns:
-        dict: A dictionary containing 'pixel_metrics' and 'image_metrics'.
+      4. evaluation: Evaluate the model at pixel-level and image-level, 
+         logging metrics (accuracy, F1, confusion matrices) to MLflow.
     """
     # Data ingestion
     df = ingest_data(data_path=DATA_PATH)

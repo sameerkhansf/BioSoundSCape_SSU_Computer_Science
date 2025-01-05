@@ -12,7 +12,7 @@ from model.data_cleaning import (
     DataDivideStrategy
 )
 
-@step
+@step(enable_cache=True)  
 def clean_data(
     data: pd.DataFrame,
 ) -> Tuple[
@@ -23,20 +23,20 @@ def clean_data(
     Annotated[LabelEncoder, "LabelEncoder"]
 ]:
     """
-    Preprocesses and cleans the input data, then divides it into training and testing datasets.
-
-    This step handles:
-      1. Cleaning and preprocessing (e.g., label encoding).
-      2. Splitting the data into stratified train and test sets.
-      3. Reshaping features for Conv1D and applying one-hot encoding to labels.
+    Preprocesses and cleans the input data, then divides it into training 
+    and testing datasets using strategy classes from model.data_cleaning.
+    Steps:
+      1. Cleaning and preprocessing (label encoding, frequency handling).
+      2. Stratified splitting into train and test sets.
+      3. Reshaping features for Conv1D and one-hot encoding of labels.
 
     Args:
-        data (pd.DataFrame): The input raw data to be cleaned and split.
+        data (pd.DataFrame): The raw data to be cleaned and split.
 
     Returns:
         Tuple:
-            - X_train (np.ndarray): Training features (Conv1D-ready shape).
-            - X_test (np.ndarray): Testing features (Conv1D-ready shape).
+            - X_train (np.ndarray): Training features for 1D CNN.
+            - X_test (np.ndarray): Testing features for 1D CNN.
             - y_train (np.ndarray): One-hot encoded training labels.
             - y_test (np.ndarray): One-hot encoded testing labels.
             - label_encoder (LabelEncoder): For decoding predicted labels.

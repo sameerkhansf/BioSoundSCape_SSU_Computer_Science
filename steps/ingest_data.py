@@ -43,7 +43,7 @@ class IngestData:
             raise e
 
 
-@step
+@step(enable_cache=True) 
 def ingest_data(data_path: str) -> pd.DataFrame:
     """
     ZenML step to ingest data from a CSV file.

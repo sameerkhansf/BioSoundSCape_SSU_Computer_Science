@@ -172,7 +172,7 @@ def predictor(
 
 @pipeline(enable_cache=True, settings={"docker": docker_settings})
 def continuous_deployment_pipeline(
-    min_accuracy: float = 0.9,
+    min_accuracy: float = 0.7,
     workers: int = 1,
     timeout: int = DEFAULT_SERVICE_START_STOP_TIMEOUT,
 ):

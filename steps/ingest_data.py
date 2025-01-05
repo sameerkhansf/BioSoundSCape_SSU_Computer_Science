@@ -27,6 +27,16 @@ class IngestData:
             logging.info(f"Ingesting data from {self.data_path}")
             df = pd.read_csv(self.data_path)
             logging.info(f"Data successfully loaded. Shape: {df.shape}")
+            
+            # --- Optional: Confirm essential columns exist ---
+            required_cols = ["File", "Label"]
+            for col in required_cols:
+                if col not in df.columns:
+                    raise ValueError(
+                        f"Required column '{col}' missing in the CSV! "
+                        f"Columns present: {list(df.columns)}"
+                    )
+            
             return df
         except Exception as e:
             logging.error(f"Error while reading data: {e}")

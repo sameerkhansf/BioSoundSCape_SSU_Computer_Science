@@ -1,0 +1,6 @@
+artifact_location: file:///Users/harrisb/Desktop/Hyperspectral-Landcover-Classification/mlruns/411697303431350234
+creation_time: 1736058306379
+experiment_id: '411697303431350234'
+last_update_time: 1736058306379
+lifecycle_stage: active
+name: train_pipeline

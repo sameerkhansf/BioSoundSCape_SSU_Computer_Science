@@ -17,10 +17,10 @@
   </a>
   <br/>
   <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
-    <img src="Assets/google_maps.png" alt="Google Maps Logo" width="475" height="400">
+    <img src="Assets/google_maps.png" alt="Google Maps Logo" width="425" height="400">
   </a>
   <a href="https://github.com/harrisb002/Hyperspectral-Landcover-Classification">
-    <img src="Assets/hexagon_layer.png" alt="Hexagon Overlay" width="475" height="400" >
+    <img src="Assets/hexagon_layer.png" alt="Hexagon Overlay" width="425" height="400" >
   </a>
 
 </div>

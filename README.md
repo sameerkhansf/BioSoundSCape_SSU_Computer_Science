@@ -134,7 +134,7 @@ This section provides an **in-depth** overview of how hyperspectral data were ha
 We gathered pixel‐level samples from AVIRIS-NG images in the Greater Cape Floristic Region, labeling each pixel according to its terrain class. Below is a snapshot of the **overall distribution** (count of **samples**/scenes) across our classes:
 
 <details>
-  <summary><strong>Initial Label Counts (Pixel-Level)</strong></summary>
+  <summary><strong>Initial Label Counts (image-Level)</strong></summary>
 
 - Shrubs: 670
 - Annual Crops: 298

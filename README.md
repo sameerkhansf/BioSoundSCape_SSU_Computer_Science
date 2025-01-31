@@ -131,7 +131,7 @@ This section provides an **in-depth** overview of how hyperspectral data were ha
 
 ### 1. Dataset & Distribution
 
-We gathered pixel‐level samples from AVIRIS-NG images in the Greater Cape Floristic Region, labeling each pixel according to its terrain class. Below is a snapshot of the **overall distribution** (count of **samples**/scenes) across our classes:
+We gathered image‐level samples from google earth images in the Greater Cape Floristic Region, labeling each image according to its terrain class. Below is a snapshot of the **overall distribution** (count of **samples**/scenes) across our classes:
 
 <details>
   <summary><strong>Initial Label Counts (image-Level)</strong></summary>

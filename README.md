@@ -51,17 +51,9 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#running-the-program">Running The Program</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contributors">Contributors</a></li>
-    <li><a href="#connect-with-us">Connect</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="docs">Detailed Analysis and Results</a></li>
+    <li><a href="#docs">Detailed Analysis and Results</a></li>
+    <li><a href="#hyperspectral-land-cover-classification-visualization-app">Web Based App</a></li>
   </ol>
 </details>
 

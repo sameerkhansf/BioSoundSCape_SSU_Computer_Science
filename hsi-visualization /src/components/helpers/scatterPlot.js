@@ -1,4 +1,3 @@
-// scatterPlot.js
 import {
     scaleLinear,
     scalePoint,

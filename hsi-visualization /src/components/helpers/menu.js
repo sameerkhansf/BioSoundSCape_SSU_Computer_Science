@@ -1,4 +1,3 @@
-// menu.js
 import { select } from 'd3';
 
 export const menu = () => {

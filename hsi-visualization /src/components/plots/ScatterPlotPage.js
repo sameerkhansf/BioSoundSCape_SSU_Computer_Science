@@ -1,8 +1,17 @@
+/**
+ * ScatterPlotPage.js
+ *
+ * Shows a scatter plot of selected samples frequencies.
+ * Can pick which frequencies to visualize (up to 10).
+ * Uses D3 to render the scatter plot and menu.
+ *
+ */
+
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
-import { scatterPlot } from './scatterPlot';
-import { menu } from './menu';
-import '../styles/ScatterPlotPage.css';
+import { scatterPlot } from '../helpers/scatterPlot';
+import { menu } from '../helpers/menu';
+import '../../styles/ScatterPlotPage.css';
 
 function ScatterPlotPage({ selectedMarkers }) {
     const [data, setData] = useState([]);
@@ -12,7 +21,6 @@ function ScatterPlotPage({ selectedMarkers }) {
     const svgRef = useRef();
     const menuContainerRef = useRef();
 
-    // Extract sample_nums from selectedMarkers
     const sampleNums = useMemo(() => selectedMarkers.map(m => m.sample_num), [selectedMarkers]);
 
     useEffect(() => {
@@ -29,7 +37,6 @@ function ScatterPlotPage({ selectedMarkers }) {
         }
     }, [sampleNums]);
 
-    // Compute frequency fields once data is available
     const frequencyFields = useMemo(() => {
         if (data.length > 0) {
             return Object.keys(data[0]).filter(k => k.startsWith('frq'));
@@ -38,14 +45,16 @@ function ScatterPlotPage({ selectedMarkers }) {
     }, [data]);
 
     useEffect(() => {
+        // Build menus (sample selector and frequency checkboxes)
         if (data.length === 0 || frequencyFields.length === 0) return;
 
         const container = d3.select(menuContainerRef.current);
-        container.selectAll('*').remove(); // Clear old menus
+        container.selectAll('*').remove();
 
         const sampleOptions = [{ value: 'All', text: 'All' }]
             .concat(sampleNums.map(s => ({ value: s.toString(), text: `Sample ${s}` })));
 
+        // Sample selection menu
         container.append('div')
             .attr('class', 'menu-block')
             .call(
@@ -53,7 +62,9 @@ function ScatterPlotPage({ selectedMarkers }) {
                     .id('sample-menu')
                     .labelText('Sample:')
                     .options(sampleOptions)
-                    .on('change', (val) => {
+                    .on('change', (vals) => {
+                        // Because our menu is single-select, take the first value
+                        const val = Array.isArray(vals) && vals.length > 0 ? vals[0] : 'All';
                         if (val !== selectedSampleOption) {
                             setSelectedSampleOption(val);
                         }
@@ -62,7 +73,7 @@ function ScatterPlotPage({ selectedMarkers }) {
             .select('select')
             .property('value', selectedSampleOption);
 
-        // Create a scrollable checkbox list for frequencies
+        // Frequencies selection
         const freqContainer = container.append('div')
             .attr('class', 'menu-block frequency-container')
             .style('max-height', '200px')
@@ -94,7 +105,7 @@ function ScatterPlotPage({ selectedMarkers }) {
                         alert('You can select a maximum of 10 frequencies.');
                     }
                 } else {
-                    // Remove frequency
+                    // Remove frequency if unchecked
                     setSelectedFrequencies(prev => prev.filter(f => f !== d));
                 }
             })
@@ -106,11 +117,26 @@ function ScatterPlotPage({ selectedMarkers }) {
 
     }, [data, frequencyFields, sampleNums, selectedSampleOption, selectedFrequencies]);
 
-    // Draw the chart and legend whenever data or parameters change
+    // Map sample_num to groundTruthLabel for use in plotting
+    const classMapping = useMemo(() => {
+        return Object.fromEntries(selectedMarkers.map(marker => [String(marker.sample_num), marker.groundTruthLabel]));
+    }, [selectedMarkers]);
+
     useEffect(() => {
-        if (data.length === 0 || frequencyFields.length === 0) return;
+        const svg = d3.select(svgRef.current);
+
+        if (data.length === 0 || frequencyFields.length === 0) {
+            svg.selectAll('*').remove();
+            if (sampleNums.length === 0) {
+                // No samples selected at all
+                return;
+            }
+            // If no frequencies or data
+            return;
+        }
+
         if (selectedFrequencies.length === 0) {
-            const svg = d3.select(svgRef.current);
+            // Prompt user to select frequencies
             svg.selectAll('*').remove();
             const width = 800;
             const height = 600;
@@ -129,21 +155,14 @@ function ScatterPlotPage({ selectedMarkers }) {
         const height = 600;
         const margin = { top: 20, right: 220, bottom: 40, left: 150 };
 
-        const svg = d3.select(svgRef.current)
-            .attr('width', width)
-            .attr('height', height);
-
-        svg.selectAll('*').remove(); // Clear previous chart content
+        svg.attr('width', width).attr('height', height);
+        svg.selectAll('*').remove(); // Clear previous charts
 
         let displayData = data;
         if (selectedSampleOption !== 'All') {
             const selectedNum = parseInt(selectedSampleOption, 10);
             displayData = data.filter(d => d.Sample_num === selectedNum);
         }
-
-        const classMapping = Object.fromEntries(
-            selectedMarkers.map(marker => [String(marker.sample_num), marker.groundTruthLabel])
-        );
 
         const marks = [];
         displayData.forEach(d => {
@@ -166,7 +185,6 @@ function ScatterPlotPage({ selectedMarkers }) {
             return;
         }
 
-        // Create the plot
         const plot = scatterPlot()
             .width(width)
             .height(height)
@@ -178,12 +196,12 @@ function ScatterPlotPage({ selectedMarkers }) {
 
         svg.call(plot);
 
-        // Build Legend for frequencies
+        // frequencies legend
+        const freqColor = d3.scaleOrdinal(d3.schemeCategory10).domain(selectedFrequencies);
+
         const legendGroup = svg.append('g')
             .attr('class', 'legend')
             .attr('transform', `translate(${width - margin.right + 20},${margin.top})`);
-
-        const freqColor = d3.scaleOrdinal(d3.schemeCategory10).domain(selectedFrequencies);
 
         const legendItems = legendGroup.selectAll('.legend-item-freq')
             .data(selectedFrequencies)
@@ -202,11 +220,11 @@ function ScatterPlotPage({ selectedMarkers }) {
             .style('font-size', '12px')
             .text(d => d);
 
-    }, [data, frequencyFields, selectedSampleOption, sampleNums, selectedMarkers, selectedFrequencies]);
+    }, [data, frequencyFields, selectedSampleOption, sampleNums, selectedMarkers, selectedFrequencies, classMapping]);
 
     return (
         <div className="scatter-page-container">
-            {data.length === 0 && (
+            {data.length === 0 && sampleNums.length === 0 && (
                 <p style={{ textAlign: 'center', marginTop: '20px' }}>
                     No samples selected. Please go back and select some markers.
                 </p>

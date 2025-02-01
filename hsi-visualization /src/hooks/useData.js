@@ -1,3 +1,10 @@
+/**
+ * useData.js
+ * 
+ * AHook to Get polygon data and find category information.
+ * Provides polygons, categories, loading, and error states in the app.
+ */
+
 import { useEffect, useState } from 'react';
 
 export function useData() {
@@ -15,7 +22,6 @@ export function useData() {
             })
             .then(polyData => {
                 setPolygons(polyData);
-
                 // Get the unique categories from ground_truth_label
                 const uniqueCategories = [...new Set(polyData.map(item => item.ground_truth_label))].filter(Boolean);
                 setCategories(uniqueCategories);

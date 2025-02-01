@@ -1,7 +1,16 @@
-// Sidebar.js
+/**
+ * Sidebar.js
+ * 
+ * Nav component:
+ * - Allows category selection.
+ * - Shows scatter and bar plot options (only enabled if markers are selected).
+ * - Displays selected samples for scatter and bar plots.
+ * - Includes navigation buttons for returning home or going to the hex-carto page.
+ */
+
 import React from 'react';
-import '../styles/Sidebar.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+import '../../styles/Sidebar.css';
 
 const categoryColors = {
     "Built-up": "rgba(255, 0, 0, 0.7)",
@@ -26,7 +35,6 @@ export function Sidebar({
     const location = useLocation();
 
     const isOnMap = location.pathname === '/';
-
     const hasScatterMarkers = selectedScatterMarkers && selectedScatterMarkers.length > 0;
     const hasBarMarkers = selectedBarMarkers && selectedBarMarkers.length > 0;
 
@@ -131,6 +139,12 @@ export function Sidebar({
                     style={{ fontSize: '20px' }}
                 >
                     🏠
+                </button>
+                <button
+                    onClick={() => (window.location.href = '/hex-carto')}
+                    style={{ fontSize: '20px', margin: '10px' }}
+                >
+                    🌎
                 </button>
             </div>
         </div>

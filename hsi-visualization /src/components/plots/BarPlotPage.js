@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
-import '../styles/BarPlotPage.css';
+import '../../styles/BarPlotPage.css';
 
 function BarPlotPage({ selectedMarkers }) {
     const [samplesData, setSamplesData] = useState([]);
@@ -12,13 +12,13 @@ function BarPlotPage({ selectedMarkers }) {
     useEffect(() => {
         const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-        // Fetch predictions
+        // Get the predictions
         fetch(`${backendUrl}/api/predictions`)
             .then(res => res.json())
             .then(preds => setPredictionsData(preds))
             .catch(err => console.error('Error fetching predictions:', err));
 
-        // Fetch samples
+        // Get the  samples
         const url = sampleNums.length > 0
             ? `${backendUrl}/api/samples?sample_nums=${sampleNums.join(',')}`
             : `${backendUrl}/api/samples`;
@@ -52,17 +52,23 @@ function BarPlotPage({ selectedMarkers }) {
             return;
         }
 
+        console.log("Sample Nums:", sampleNums)
+
         sampleNums.forEach(sNum => {
             const sample = samplesData.find(d => d.Sample_num === sNum);
+            console.log("sample:", samplesData)
+            console.log("samplesData:", samplesData)
+
             if (!sample) return;
 
             const freqs = frequencyFields.map(f => sample[f]).filter(v => typeof v === 'number');
+            console.log("Frequencies:", freqs)
 
             const xDomain = [-0.5, 0.5];
-            const binSize = 0.05; 
+            const binSize = 0.05;
             const histogram = d3.histogram()
                 .domain(xDomain)
-                .thresholds(d3.range(-0.5, 0.51, binSize)); 
+                .thresholds(d3.range(-0.5, 0.51, binSize));
             const bins = histogram(freqs);
 
             // Convert bins to data for the bar chart

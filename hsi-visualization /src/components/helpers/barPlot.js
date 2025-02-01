@@ -1,4 +1,3 @@
-// barPlot.js
 import { scaleBand, scaleLinear, axisLeft, axisBottom, select, transition } from 'd3';
 
 export const barPlot = () => {

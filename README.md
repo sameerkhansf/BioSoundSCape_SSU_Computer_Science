@@ -255,6 +255,38 @@ Built a **1D Convolutional Neural Network** to leverage the **spectral dimension
 - **Loss Function**: **Categorical Crossentropy**
 - **Callbacks**: EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 
+#### Data Balancing and Model Architecture Functions
+
+To address class imbalance and optimize model performance, we implemented two key functions:
+
+1. **Undersampling Function**
+
+   ```python
+   def undersample_to_target_size(samples_df, percentage=0.50, randSeed=50)
+   ```
+
+   - Reduces the size of the largest class in the dataset by a specified percentage
+   - Parameters:
+     - `samples_df`: DataFrame containing the samples
+     - `percentage`: Target reduction percentage (default: 0.50 or 50%)
+     - `randSeed`: Random seed for reproducibility (default: 50)
+   - Returns: Balanced DataFrame with reduced majority class
+
+2. **Simplified Model Architecture**
+   ```python
+   def get_altered_cnn_model(input_shape, num_classes, wd, drop_rate, learning_rate)
+   ```
+   - Creates and compiles a simplified CNN model architecture
+   - Parameters:
+     - `input_shape`: Shape of input data (number of frequency bands)
+     - `num_classes`: Number of output classes
+     - `wd`: Weight decay for regularization
+     - `drop_rate`: Dropout rate for preventing overfitting
+     - `learning_rate`: Initial learning rate for the optimizer
+   - Returns: Compiled Keras model ready for training
+
+These functions help address class imbalance issues and provide a more streamlined model architecture for improved training efficiency.
+
 ---
 
 ### 4. Results & Discussion

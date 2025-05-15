@@ -161,11 +161,11 @@ For training–testing splits, ensured **stratification** at the sample (image) 
 
 ### 2. Preprocessing & Outlier Removal
 
-Our preprocessing pipeline focused on **data cleaning** and **outlier detection** to remove “noisy” or invalid pixels before model training.
+Our preprocessing pipeline focused on **data cleaning** and **outlier detection** to remove "noisy" or invalid pixels before model training.
 
 #### 2.1 Data Cleaning
 
-1. **Remove “Mixed or Not Classified” Labels**  
+1. **Remove "Mixed or Not Classified" Labels**  
    Rows with ambiguous or unreliable class designations were discarded.
 
 2. **Handle Missing Frequency Data**
@@ -226,7 +226,7 @@ Below are three examples illustrating the **original CNN predictions** (_left_) 
   <img src="Assets/morphology/morphologyEx2.png" alt="Morphology Example 2" width="400" height="200">
 </div>
 
-> **Figure**: Post-processing visually “cleans” each labeled map by expanding the majority class (green in these examples), removing small scattered patches of confusion.
+> **Figure**: Post-processing visually "cleans" each labeled map by expanding the majority class (green in these examples), removing small scattered patches of confusion.
 
 In practice, morphological post-processing is **optional** and can be tuned via alternative structuring elements (e.g., disk, diamond), operation types (e.g., opening/closing), or window sizes. For our dataset, we found **minimal changes** in **image-level** metrics, but **reduced noise** at the **per-pixel** scale.
 
@@ -259,9 +259,9 @@ Built a **1D Convolutional Neural Network** to leverage the **spectral dimension
 
 ### 4. Results & Discussion
 
-We evaluated performance at the **image level**, i.e., each test image’s class assigned via majority voting on pixel predictions.
+We evaluated performance at the **image level**, i.e., each test image's class assigned via majority voting on pixel predictions.
 
-#### 4.1 Retaining “Shrubs” and “Natural Grassland” as Separate Classes
+#### 4.1 Retaining "Shrubs" and "Natural Grassland" as Separate Classes
 
 When **Shrubs** and **Natural Grassland** remain **distinct**:
 
@@ -296,9 +296,9 @@ When **Shrubs** and **Natural Grassland** remain **distinct**:
 - **Shrubs** and **Natural Grassland** see **significant confusion**, hurting recall for Grassland.
 - **Wetlands** and **Consolidated Barren** also struggle.
 
-#### 4.2 Merging “Shrubs” and “Natural Grassland” into a Single Class
+#### 4.2 Merging "Shrubs" and "Natural Grassland" into a Single Class
 
-To reduce confusion between these visually/spectrally similar categories, we merged them into one label: **“Shrubs and Natural Grassland.”**
+To reduce confusion between these visually/spectrally similar categories, we merged them into one label: **"Shrubs and Natural Grassland."**
 
 <div>
   <img src="Assets/imageLevelMetrics/1DImageLevelCombined.png" alt="Confusion Matrix Merged" width="600" height="500">
@@ -342,6 +342,60 @@ To reduce confusion between these visually/spectrally similar categories, we mer
    - Classes like **Wetlands**, **Unconsolidated Barren**, etc., remain underrepresented, hurting recall and F1. Techniques like oversampling or advanced class weighting could further help.
 4. **Spectral Complexity**
    - Hyperspectral data benefits from 1D CNN approaches but **visually similar** or **spectrally close** classes remain difficult to discriminate.
+
+---
+
+### 6. Code Contributions
+
+The project includes several utility functions for processing and analyzing hyperspectral data:
+
+#### Core Functions
+
+1. **Date Extraction**
+
+   ```python
+   extract_date_from_filename(filename)
+   ```
+
+   - Parses timestamps (YYYYMMDDtHHMMSS) from filenames
+   - Returns datetime object or None if timestamp is missing
+   - Essential for temporal analysis and sorting
+
+2. **Prediction Pipeline**
+
+   ```python
+   load_predict_and_visualize(image_path, ground_truth_label, model, label_encoder, sample_num=None)
+   ```
+
+   - Core prediction function that:
+     - Loads and processes a single image
+     - Runs model inference
+     - Optionally generates visualization
+     - Returns predicted label and confidence score
+
+3. **Result Deduplication**
+
+   ```python
+   pick_best(entries)
+   _is_better(a, b)
+   ```
+
+   - Handles overlapping predictions by:
+     - Comparing confidence scores
+     - Using timestamps as tiebreakers
+     - Maintaining only highest-confidence predictions
+
+4. **Main Pipeline**
+   ```python
+   main(samples_df, model, label_encoder)
+   ```
+   - Orchestrates the complete workflow:
+     - Iterates through sample DataFrame
+     - Manages prediction pipeline
+     - Handles deduplication
+     - Returns sorted results by confidence
+
+These functions form a robust pipeline for processing hyperspectral data, ensuring consistent predictions and handling edge cases like overlapping samples.
 
 ---
 

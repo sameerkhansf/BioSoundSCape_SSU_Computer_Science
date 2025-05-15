@@ -287,13 +287,49 @@ To address class imbalance and optimize model performance, we implemented two ke
 
 These functions help address class imbalance issues and provide a more streamlined model architecture for improved training efficiency.
 
+### 4. Random Forest Implementation
+
+The project includes a Random Forest classifier that can operate in two modes:
+
+1. **Random Forest with CNN-Extracted Features**
+
+   - Requires pre-trained CNN model for feature extraction
+   - Dependencies:
+     - CNN model must be trained first
+     - All preprocessing and helper functions must be executed
+   - Implementation: `get_random_forest_model` function
+   - Uses CNN predictions as features for classification
+
+2. **Random Forest with Engineered Features**
+   - Can run independently of the CNN pipeline
+   - Uses traditional feature engineering approaches
+   - No dependency on CNN model training
+   - Utilizes the same data source (CSV files) as the CNN implementation
+
+#### Running the Random Forest Code
+
+To run the Random Forest implementation in `CombinedCNN.ipynb`:
+
+1. **For CNN-Extracted Features:**
+
+   - Ensure CNN model training cells have been executed
+   - Verify all required imports and helper functions are available
+   - Run the Random Forest cells after CNN training
+
+2. **For Engineered Features:**
+   - Can be run independently
+   - No CNN training required
+   - Uses the same main directory file path for CSV files
+
+> **Note**: Always ensure all relevant cells above the CNN training/testing section are executed to maintain required dependencies and helper functions.
+
 ---
 
-### 4. Results & Discussion
+### 5. Results & Discussion
 
 We evaluated performance at the **image level**, i.e., each test image's class assigned via majority voting on pixel predictions.
 
-#### 4.1 Retaining "Shrubs" and "Natural Grassland" as Separate Classes
+#### 5.1 Retaining "Shrubs" and "Natural Grassland" as Separate Classes
 
 When **Shrubs** and **Natural Grassland** remain **distinct**:
 
@@ -328,7 +364,7 @@ When **Shrubs** and **Natural Grassland** remain **distinct**:
 - **Shrubs** and **Natural Grassland** see **significant confusion**, hurting recall for Grassland.
 - **Wetlands** and **Consolidated Barren** also struggle.
 
-#### 4.2 Merging "Shrubs" and "Natural Grassland" into a Single Class
+#### 5.2 Merging "Shrubs" and "Natural Grassland" into a Single Class
 
 To reduce confusion between these visually/spectrally similar categories, we merged them into one label: **"Shrubs and Natural Grassland."**
 
@@ -361,19 +397,6 @@ To reduce confusion between these visually/spectrally similar categories, we mer
 - Merging significantly **boosted** accuracy and **F1** for that combined class.
 - **Built‐up** and **Waterbodies** remain strong, with near‐perfect scores.
 - Challenges persist for **Wetlands** and **Consolidated Barren**.
-
----
-
-### 5. Key Takeaways & Limitations
-
-1. **Outlier Removal Helps**
-   - PCA+Mahalanobis filtering prunes noisy spectral pixels, improving class separation.
-2. **Merging Similar Classes**
-   - Combining **Shrubs** and **Natural Grassland** alleviated confusion, yielding an **82%** image‐level accuracy.
-3. **Data Imbalance Issues**
-   - Classes like **Wetlands**, **Unconsolidated Barren**, etc., remain underrepresented, hurting recall and F1. Techniques like oversampling or advanced class weighting could further help.
-4. **Spectral Complexity**
-   - Hyperspectral data benefits from 1D CNN approaches but **visually similar** or **spectrally close** classes remain difficult to discriminate.
 
 ---
 

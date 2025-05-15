@@ -345,57 +345,63 @@ To reduce confusion between these visually/spectrally similar categories, we mer
 
 ---
 
-### 6. Code Contributions
+### 6. Prediction Pipeline and Overlap Resolution
 
-The project includes several utility functions for processing and analyzing hyperspectral data:
+The project try to implement a robust prediction pipeline with intelligent handling of overlapping predictions. This system ensures reliable classification by resolving conflicts between overlapping samples based on confidence scores and temporal data.
 
-#### Core Functions
+#### Core Components
 
-1. **Date Extraction**
+1. **Temporal Data Processing**
 
    ```python
    extract_date_from_filename(filename)
    ```
 
-   - Parses timestamps (YYYYMMDDtHHMMSS) from filenames
-   - Returns datetime object or None if timestamp is missing
-   - Essential for temporal analysis and sorting
+   - Extracts timestamps from filenames in YYYYMMDDtHHMMSS format
+   - Enables temporal sorting and conflict resolution
+   - Returns datetime objects for precise timestamp comparison
 
-2. **Prediction Pipeline**
+2. **Single-Sample Prediction**
 
    ```python
    load_predict_and_visualize(image_path, ground_truth_label, model, label_encoder, sample_num=None)
    ```
 
-   - Core prediction function that:
-     - Loads and processes a single image
-     - Runs model inference
-     - Optionally generates visualization
-     - Returns predicted label and confidence score
+   - Processes individual hyperspectral samples
+   - Generates predictions with confidence scores
+   - Supports optional visualization for analysis
+   - Returns both predicted class and confidence metrics
 
-3. **Result Deduplication**
+3. **Overlap Resolution System**
 
    ```python
    pick_best(entries)
    _is_better(a, b)
    ```
 
-   - Handles overlapping predictions by:
-     - Comparing confidence scores
-     - Using timestamps as tiebreakers
-     - Maintaining only highest-confidence predictions
+   - Implements a sophisticated conflict resolution strategy:
+     - Primary criterion: Highest confidence prediction
+     - Secondary criterion: Most recent timestamp
+   - Ensures consistent handling of overlapping regions
+   - Maintains data integrity in complex scenarios
 
-4. **Main Pipeline**
+4. **Pipeline Orchestration**
    ```python
    main(samples_df, model, label_encoder)
    ```
-   - Orchestrates the complete workflow:
-     - Iterates through sample DataFrame
-     - Manages prediction pipeline
-     - Handles deduplication
+   - Coordinates the complete prediction workflow:
+     - Processes all samples in the dataset
+     - Applies the prediction model
+     - Resolves overlapping predictions
      - Returns sorted results by confidence
+   - Ensures consistent and reliable output
 
-These functions form a robust pipeline for processing hyperspectral data, ensuring consistent predictions and handling edge cases like overlapping samples.
+This system is particularly valuable for:
+
+- Handling complex overlapping regions in hyperspectral data
+- Maintaining prediction consistency across the dataset
+- Providing reliable confidence metrics for each prediction
+- Supporting temporal analysis of classification results
 
 ---
 
